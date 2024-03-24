@@ -1,0 +1,1 @@
+HOST=deploy@147.45.74.172 PORT=22 REGISTRY=tgnwest IMAGE_TAG=master-1 BUILD_NUMBER=1 make deploy

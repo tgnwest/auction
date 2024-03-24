@@ -1,0 +1,4 @@
+certbot_email: tgnwest@gmail.com
+certbot_hosts:
+  - demo-auction.xelasoft.ru
+  - api.demo-auction.xelasoft.ru

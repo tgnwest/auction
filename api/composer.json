@@ -1,0 +1,15 @@
+{
+    "name": "xelasoft/auction",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "version": "1.0.0",
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "require": {
+        "php": "^8.3",
+        "slim/psr7": "^1.6",
+        "slim/slim": "^4.13"
+    }
+}

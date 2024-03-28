@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Http\Action\HomeAction;
 use DI\Container;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Slim\Factory\AppFactory;
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -13,7 +15,8 @@ $builder = new DI\ContainerBuilder();
 
 $builder->addDefinitions([
     'config' => [
-        'debug' => (bool)getenv('APP_DEBUG'),
+//        'debug' => (bool)getenv('APP_DEBUG'),
+        'debug' => true,
     ],
 ]);
 
@@ -23,9 +26,6 @@ $app = AppFactory::createFromContainer($container);
 
 $app->addErrorMiddleware($container->get('config')['debug'], true, true);
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write('{}');
-    return $response->withHeader('Content-Type', 'application/json');
-});
+$app->get('/', HomeAction::class);
 
 $app->run();

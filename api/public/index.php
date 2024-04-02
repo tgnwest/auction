@@ -2,30 +2,19 @@
 
 declare(strict_types=1);
 
-use App\Http\Action\HomeAction;
-use DI\Container;
-use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
-use Psr\Http\Message\RequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$builder = new DI\ContainerBuilder();
-
-$builder->addDefinitions([
-    'config' => [
-//        'debug' => (bool)getenv('APP_DEBUG'),
-        'debug' => true,
-    ],
-]);
-
-$container = $builder->build();
+/** @var ContainerInterface $container */
+$container = require __DIR__ . '/../config/container.php';
 
 $app = AppFactory::createFromContainer($container);
 
-$app->addErrorMiddleware($container->get('config')['debug'], true, true);
+(require __DIR__ . '/../config/middleware.php')($app, $container);
 
-$app->get('/', HomeAction::class);
+(require __DIR__ . '/../config/routes.php')($app);
 
 $app->run();

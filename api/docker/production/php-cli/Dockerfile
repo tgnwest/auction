@@ -1,4 +1,4 @@
-FROM php:8.3-cli-alpine AS builder
+FROM php:7.4-cli-alpine AS builder
 
 RUN apk add unzip
 
@@ -15,7 +15,7 @@ RUN composer install --no-dev --prefer-dist --no-progress --no-suggest --optimiz
     && rm -rf /root/.composer/cache
 
 ### CLI ###
-FROM php:8.3-cli-alpine
+FROM php:7.4-cli-alpine
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 

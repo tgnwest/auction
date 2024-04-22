@@ -2,13 +2,20 @@
 
 declare(strict_types=1);
 
+$commonFiles = glob(__DIR__ . '/common/*.php');
+$envFiles = glob(__DIR__ . '/' . (getenv('APP_ENV') ?: 'prod') . '/*.php');
 $files = array_merge(
-    glob(__DIR__ . '/common/*.php') ?: [],
-    glob(__DIR__ . '/' . (getenv('APP_ENV') ?: 'prod') . '/*.php') ?: []
+    $commonFiles === false ? [] : $commonFiles,
+    $envFiles === false ? [] : $envFiles
 );
 
 $configs = array_map(
-    static function ($file) {
+    static function (string $file) {
+        /**
+         * @var array
+         * @noinspection PhpIncludeInspection
+         * @psalm-suppress UnresolvableInclude
+         */
         return require $file;
     },
     $files

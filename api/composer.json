@@ -23,15 +23,22 @@
             "App\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests/"
+        }
+    },
     "scripts": {
         "lint": "vendor/bin/phplint",
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
         "psalm": "psalm",
+        "test": "phpunit --colors=always",
         "app": "php bin/app.php --ansi"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
+        "phpunit/phpunit": "^9.6",
         "squizlabs/php_codesniffer": "^3.9",
         "vimeo/psalm": "^5.23"
     }

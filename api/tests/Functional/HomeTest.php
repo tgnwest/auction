@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
-/**
- * @covers HomeTest
- */
 class HomeTest extends WebTestCase
 {
     public function testSuccess(): void
